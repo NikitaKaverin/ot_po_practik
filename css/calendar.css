@@ -1,0 +1,23 @@
+
+/*_Calendar*/
+#Calendar {
+    position: absolute;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    border: 1px solid #303030;
+    display: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    z-index: 9999999;
+    box-shadow: 0 0 15px rgba(98, 98, 206, 1);
+}
+#Calendar_mns{
+    text-align:center;
+    margin: 0;
+    padding: 0;
+}
+#Calendar select,#Calendar option {
+    font-size: 11px;
+    padding: 0 2px
+}
