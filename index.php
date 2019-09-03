@@ -83,6 +83,14 @@ include("header.php");
           </div>
         </div>
 </main>
-
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>iNikiCorp &copy; 2019</p>
+    <p>Кто же создал столь замечательныю страницу? Ответ найдем перейдя по ссылки-><a href="https://vk.com/id317126234">Разработчик.</a> </p>
+  </div>
+</footer>
 </body>
 </html>
