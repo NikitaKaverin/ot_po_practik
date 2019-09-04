@@ -26,6 +26,13 @@ include("header.php");
     </div>
   </div>
 </header>
+<style>
+ body
+    {
+      background:url(image/car.jpg);
+    }
+
+</style>
 <?php
       $host = '127.0.0.1:3306';  // Хост, у нас все локально
       $user = 'root';    // Имя созданного вами пользователя

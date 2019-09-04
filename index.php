@@ -23,13 +23,21 @@ include("header.php");
             header("Location: /ot_po_practik/car.php");
             exit;
 } 
- if(isset($_POST["car1"])){
-    $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='C'");
-    $result = mysqli_fetch_array($sql);//var_dump($result);die();
-    $primer=$result['id_kategor'];
-    $_SESSION['dat']=$primer;
-    header("Location: /ot_po_practik/car.php");
-    exit;
+        if(isset($_POST["car1"])){
+            $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='C'");
+            $result = mysqli_fetch_array($sql);//var_dump($result);die();
+            $primer=$result['id_kategor'];
+            $_SESSION['dat']=$primer;
+            header("Location: /ot_po_practik/car.php");
+            exit;
+}
+        if(isset($_POST["car3"])){
+            $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='A,M,B1'");
+            $result = mysqli_fetch_array($sql);//var_dump($result);die();
+            $primer=$result['id_kategor'];
+            $_SESSION['dat']=$primer;
+            header("Location: /ot_po_practik/car.php");
+            exit;
 }
 ?>
 <html lang="ru">
@@ -107,7 +115,9 @@ include("header.php");
               <p class="card-text">Каждый из нас мечтал хотя бы раз прокатиться на байке. В нашем же автопрокате это мечта может осучествиться. Обязательно иметь в воодительских правах категорию <h4>A,M,B1</h4>   </p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-lg">Посмотреть транспорт</button>
+                <form class="form-signin" action="" method="POST">
+                <input class="btn btn-lg btn-primary btn-block" name="car3" type="submit" value="Посмотреть транспорт">
+                </form>
                 </div>             
               </div>
             </div>

@@ -5,7 +5,6 @@
 <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
       .bd-placeholder-img {
-        background:url(/ot_po_practik/image/oboi.png);
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
