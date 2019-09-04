@@ -1,11 +1,4 @@
 <?php
-session_start();
-$result_id = $_SESSION['id'];
-if(empty($result_id))
-{
-  header("Location: http://localhost/ot_po_practik/index.php");  
-  exit;
-}
 include("header.php");
 ?>
 <!doctype html>
@@ -33,35 +26,35 @@ include("header.php");
     </div>
   </div>
 </header>
+<?php
+      $host = '127.0.0.1:3306';  // Хост, у нас все локально
+      $user = 'root';    // Имя созданного вами пользователя
+      $pass = ''; // Установленный вами пароль пользователю
+      $db_name = 'aftoru';   // Имя базы данных
+      $link = mysqli_connect($host, $user, $pass, $db_name); // Соединяемся с базой
+      
+      // Ругаемся, если соединение установить не удалось
+      if (!$link) {
+        echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
+        exit;
+      }
+    session_start();
+    $primer = $_SESSION['dat']; 
+    $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
+    FROM `car`where `id_kategor`=$primer");//var_dump($sql);die();
+     while ($result = mysqli_fetch_array($sql))
+      {
+    $name=$result['name'];
+    $tel=$result['telephone'];
+    $photo=$result['photo'];
+    $are=$result['arenda'];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        echo '<div class="col-lg-4">
+        <h2>'.$name.'. </h2>
+        <h2>'.$tel.'.'.$are.'</h2>
+        <p> <img src="'.$photo.'" class="d-block w-100" width="250" height="350"></p>
+      </div><!-- /.col-lg-4 -->';
+    };
+    ?>
+</body>
 </html>

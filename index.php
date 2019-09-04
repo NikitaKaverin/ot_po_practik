@@ -5,7 +5,28 @@ if(empty($_SESSION['id'])) $result_id = 0;
 else $result_id = $_SESSION['id'];
 include("header.php");
 ?>
-<!doctype html>
+
+<?php
+        $host = '127.0.0.1:3306';  // Хост, у нас все локально
+        $user = 'root';    // Имя созданного вами пользователя
+        $pass = ''; // Установленный вами пароль пользователю
+        $db_name = 'aftoru';   // Имя базы данных
+        $link = mysqli_connect($host, $user, $pass, $db_name); // Соединяемся с базой
+        
+        // Ругаемся, если соединение установить не удалось
+        if (!$link) {
+          echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
+          exit;
+        }        
+        if (isset($_POST["car2"])){
+            $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='B'");
+            $result = mysqli_fetch_array($sql);
+            $primer=$result['id_kategor'];
+            $_SESSION['dat']=$primer;
+            header("Location: /ot_po_practik/car.php");
+            exit;
+} 
+?>
 <html lang="ru">
     <header>
   <div class="collapse bg-dark" id="navbarHeader">
@@ -57,26 +78,6 @@ include("header.php");
           </div>
         </div>
 
-        <?php
-        $host = '127.0.0.1:3306';  // Хост, у нас все локально
-        $user = 'root';    // Имя созданного вами пользователя
-        $pass = ''; // Установленный вами пароль пользователю
-        $db_name = 'aftoru';   // Имя базы данных
-        $link = mysqli_connect($host, $user, $pass, $db_name); // Соединяемся с базой
-        
-        // Ругаемся, если соединение установить не удалось
-        if (!$link) {
-          echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
-          exit;
-        }        
-        if (isset($_POST["car2"])){
-            $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='B'");
-            $result = mysqli_fetch_array($sql);
-            $primer=$result['id_kategor'];
-            $_SESSION['dat']=$primer;
-            header("Location: /ot_po_practik/car.php");exit;
-} 
-?>
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="image/mach.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/>
