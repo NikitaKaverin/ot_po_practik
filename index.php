@@ -5,15 +5,12 @@ if(empty($_SESSION['id'])) $result_id = 0;
 else $result_id = $_SESSION['id'];
 include("header.php");
 ?>
-
 <?php
         $host = '127.0.0.1:3306';  // Хост, у нас все локально
         $user = 'root';    // Имя созданного вами пользователя
         $pass = ''; // Установленный вами пароль пользователю
         $db_name = 'aftoru';   // Имя базы данных
         $link = mysqli_connect($host, $user, $pass, $db_name); // Соединяемся с базой
-        
-        // Ругаемся, если соединение установить не удалось
         if (!$link) {
           echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
           exit;
@@ -26,6 +23,14 @@ include("header.php");
             header("Location: /ot_po_practik/car.php");
             exit;
 } 
+ if(isset($_POST["car1"])){
+    $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='C'");
+    $result = mysqli_fetch_array($sql);//var_dump($result);die();
+    $primer=$result['id_kategor'];
+    $_SESSION['dat']=$primer;
+    header("Location: /ot_po_practik/car.php");
+    exit;
+}
 ?>
 <html lang="ru">
     <header>
@@ -70,9 +75,10 @@ include("header.php");
               <p class="card-text">Данный тип транспорта предназначен для перевозки грузов и других обьектов. Tребование категории водительских прав:<h4>С</h4></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-primary btn-lg">Посмотреть транспорт</button>
+                <form class="form-signin" action="" method="POST">
+                <input class="btn btn-lg btn-primary btn-block" name="car1" type="submit" value="Посмотреть транспорт">
+                </form>
                 </div>
-                
               </div>
             </div>
           </div>

@@ -48,11 +48,12 @@ include("header.php");
     $tel=$result['telephone'];
     $photo=$result['photo'];
     $are=$result['arenda'];
-
-        echo '<div class="col-lg-4">
-        <h2>'.$name.'. </h2>
-        <h2>'.$tel.'.'.$are.'</h2>
-        <p> <img src="'.$photo.'" class="d-block w-100" width="250" height="350"></p>
+        echo '<div class="col-md-12" align="center">
+        <h3>'.$name.'. </h3>
+        <h4>Телефон:89'.$tel.'</h4>
+        <h4>Суточная аренда:'.$are.' Руб</h4>
+        <p><img src="'.$photo.'" width="500" height="400" viewBox="24 24 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><//P>
+         <h6>По вопросам аренды звонить по номеру телефона.</h6>
       </div><!-- /.col-lg-4 -->';
     };
     ?>
