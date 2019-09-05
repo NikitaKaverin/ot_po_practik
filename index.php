@@ -16,7 +16,7 @@ include("header.php");
           exit;
         }        
         if (isset($_POST["car2"])){
-            $sql=mysqli_query($link,"SELECT`id_kategor` FROM `Kategor` where `kategor`='B'");
+            $sql=mysqli_query($link,"SELECT `id_kategor` FROM `Kategor` where `kategor`='B'");
             $result = mysqli_fetch_array($sql);
             $primer=$result['id_kategor'];
             $_SESSION['dat']=$primer;
