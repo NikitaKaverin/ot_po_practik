@@ -30,7 +30,7 @@ include("header.php");
 <form action="" method="post">
     <div class="form-group col-md-2">
         <label for="num"><h3>Сумма до:</h3></label>
-            <input type="number" min="500" max="10000" class="form-control" name="num" value="1000" required><br>
+            <input type="number" min="500" max="10000" class="form-control" name="num" value="2000" required><br>
             <input type="submit" class="btn btn-primary" value="Поиск" name="bron">   
      </div>   
   </form>
@@ -57,6 +57,8 @@ include("header.php");
     $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
     FROM `car`where `id_kategor`=$primer");//var_dump($sql);die();
      while ($result = mysqli_fetch_array($sql))
+     if(empty($_POST["bron"]))
+     {
       {
     $name=$result['name'];
     $tel=$result['telephone'];
@@ -70,9 +72,12 @@ include("header.php");
          <h6>По вопросам аренды звонить по номеру телефона.</h6>
       </div><!-- /.col-lg-4 -->';
       
-    };
+    }
+}else
+{
     if(isset($_POST["bron"]))
     { 
+       $primer = $_SESSION['dat'];
        $bron=$_POST['num'];
        $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
        FROM `car` where `id_kategor`='$primer' and `arenda`<$bron"); 
@@ -82,16 +87,16 @@ include("header.php");
       $tel=$result['telephone'];
       $photo=$result['photo'];
       $are=$result['arenda'];
-          echo '<div class="form-group col-md-12" align="center">
+          echo '<div class="form-group col-md-12" href="car.php" align="center">
           <h3>'.$name.'. </h3>
           <h4>Телефон:89'.$tel.'</h4>
           <h4>Суточная аренда:'.$are.' Руб</h4>
           <p><img src="'.$photo.'" width="500" height="400" viewBox="24 24 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><//P>
            <h6>По вопросам аренды звонить по номеру телефона.</h6>
         </div><!-- /.col-lg-4 -->';
-
     }
   }
+};
 
     ?>
 
