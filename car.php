@@ -34,13 +34,11 @@ include("header.php");
 
 </style>
 <?php
-      $host = '127.0.0.1:3306';  // Хост, у нас все локально
-      $user = 'root';    // Имя созданного вами пользователя
-      $pass = ''; // Установленный вами пароль пользователю
-      $db_name = 'aftoru';   // Имя базы данных
-      $link = mysqli_connect($host, $user, $pass, $db_name); // Соединяемся с базой
-      
-      // Ругаемся, если соединение установить не удалось
+      $host = '127.0.0.1:3306'; 
+      $user = 'root';  
+      $pass = ''; 
+      $db_name = 'aftoru';
+      $link = mysqli_connect($host, $user, $pass, $db_name); 
       if (!$link) {
         echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
         exit;
@@ -64,5 +62,18 @@ include("header.php");
       </div><!-- /.col-lg-4 -->';
     };
     ?>
+
+<footer class="text-muted">
+<br>
+<br>
+<br>
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>iNikiCorp &copy; 2019</p>
+    <p>Кто же создал столь замечательныю страницу? Ответ найдем перейдя по ссылки-><a href="https://vk.com/id317126234">Разработчик.</a> </p>
+  </div>
+</footer>
 </body>
 </html>

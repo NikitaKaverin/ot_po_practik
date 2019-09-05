@@ -12,10 +12,7 @@
         -ms-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
-          
-
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
@@ -30,7 +27,6 @@
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','/js/analytics.js','ga');
-
   ga('create', 'UA-4481610-59', 'auto');
   ga('send', 'pageview');
 </script>

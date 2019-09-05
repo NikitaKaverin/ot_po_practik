@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if(empty($_SESSION['id'])) $result_id = 0;
+if(empty($_SESSION['id'])) $result_id;
 else $result_id = $_SESSION['id'];
 include("header.php");
 ?>
@@ -91,7 +91,6 @@ include("header.php");
             </div>
           </div>
         </div>
-
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="image/mach.jpg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect fill="#55595c" width="100%" height="100%"/>
@@ -103,7 +102,6 @@ include("header.php");
                 <input class="btn btn-lg btn-primary btn-block" name="car2" type="submit" value="Посмотреть транспорт">
                 </form>
                  </div>
-                
               </div>
             </div>
           </div>
