@@ -1,7 +1,6 @@
 <?php
-
 session_start();
-if(empty($_SESSION['id'])) $result_id;
+if(empty($_SESSION['id'])) $result_id = 0;
 else $result_id = $_SESSION['id'];
 include("header.php");
 ?>
@@ -20,6 +19,7 @@ include("header.php");
             $result = mysqli_fetch_array($sql);
             $primer=$result['id_kategor'];
             $_SESSION['dat']=$primer;
+            $_SESSION['id']=1;
             header("Location: /ot_po_practik/car.php");
             exit;
 } 

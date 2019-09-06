@@ -49,6 +49,13 @@ include("header.php");
         exit;
       }
     session_start();
+    $result_id = $_SESSION['id'];
+    if(empty($result_id))
+    {
+    header("Location: index.php");  
+    exit;
+    }
+include("header.php");
     $primer = $_SESSION['dat'];
     $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
     FROM `car`where `id_kategor`=$primer");//var_dump($sql);die();
