@@ -8,8 +8,8 @@ include("header.php");
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">Машины</h4>
-          <p class="text-muted">Наши авто соответствуют всем требованияи комфорта и страндартам чистоты. Любой желающий может прокататься на любой машине что ему понравилась. </p>
+          <h4 class="text-white">Как арендовать?</h4>
+          <p class="text-muted">Весь список представлен снизу, как только вам понравилась та или иная машина,позвоните по номеру и просто договоритесь о встрече. Так же можете от сортировать нужные вам машины по стоимости аренды. </p>
         </div>
       </div>
     </div>
@@ -26,21 +26,24 @@ include("header.php");
     </div>
   </div>
 </header>
+<style>
+     body
+    {
+      background:url(image/oboi.png);
+    }
+</style>
 <br>
 <form action="" method="post">
     <div class="form-group col-md-2">
+        <label for="num"><h3>Сумма от:</h3></label>
+            <input type="number" min="500" max="10000" class="form-control" name="min" value="500" required><br>
         <label for="num"><h3>Сумма до:</h3></label>
-            <input type="number" min="500" max="10000" class="form-control" name="num" value="2000" required><br>
+            <input type="number" min="500" max="10000" class="form-control" name="max" value="10000" required><br>
             <input type="submit" class="btn btn-primary" value="Поиск" name="bron">   
      </div>   
+     </div>   
   </form>
-<style>
- body
-    {
-      background:url(image/car.jpg);
-    }
-
-</style>
+<div class="row">
 <?php
       $host = '127.0.0.1:3306'; 
       $user = 'root';  
@@ -51,7 +54,6 @@ include("header.php");
         echo 'Не могу соединиться с БД. Код ошибки: ' . mysqli_connect_errno() . ', ошибка: ' . mysqli_connect_error();
         exit;
       }
-     
     session_start();
     $primer = $_SESSION['dat'];
     $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
@@ -64,13 +66,20 @@ include("header.php");
     $tel=$result['telephone'];
     $photo=$result['photo'];
     $are=$result['arenda'];
-        echo '<div class="form-group col-md-12" align="center">
-        <h3>'.$name.'. </h3>
-        <h4>Телефон:89'.$tel.'</h4>
-        <h4>Суточная аренда:'.$are.' Руб</h4>
-        <p><img src="'.$photo.'" width="500" height="400" viewBox="24 24 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><//P>
-         <h6>По вопросам аренды звонить по номеру телефона.</h6>
-      </div><!-- /.col-lg-4 -->';
+        echo '
+        <div class="col-md-6">
+        <div class="card mb-6 shadow-sm">
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <img src="'.$photo.'" width="300" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <b>'.$name.'<br>Телефон:89'.$tel.'<br>Час аренды:'.$are.' руб.</b>
+          </a>
+        </div>
+      </div>
+      </div>
+      </div>';
+    ;
       
     }
 }else
@@ -78,28 +87,35 @@ include("header.php");
     if(isset($_POST["bron"]))
     { 
        $primer = $_SESSION['dat'];
-       $bron=$_POST['num'];
+       $min=$_POST['min'];
+       $max=$_POST['max'];
        $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
-       FROM `car` where `id_kategor`='$primer' and `arenda`<$bron"); 
+       FROM `car` where `id_kategor`='$primer' and `arenda`>$min and `arenda`<$mas"); 
        while ($result = mysqli_fetch_array($sql))
         {
       $name=$result['name'];
       $tel=$result['telephone'];
       $photo=$result['photo'];
       $are=$result['arenda'];
-          echo '<div class="form-group col-md-12" href="car.php" align="center">
-          <h3>'.$name.'. </h3>
-          <h4>Телефон:89'.$tel.'</h4>
-          <h4>Суточная аренда:'.$are.' Руб</h4>
-          <p><img src="'.$photo.'" width="500" height="400" viewBox="24 24 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><//P>
-           <h6>По вопросам аренды звонить по номеру телефона.</h6>
-        </div><!-- /.col-lg-4 -->';
+          echo '
+          <div class="col-md-6">
+          <div class="card mb-6 shadow-sm">
+          <div class="navbar navbar-dark bg-dark shadow-sm">
+          <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <img src="'.$photo.'" width="300" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              <b>'.$name.'<br>Телефон:89'.$tel.'<br>Час аренды:'.$are.' руб.</b>
+            </a>
+          </div>
+        </div>
+        </div>
+        </div>';
     }
   }
 };
 
     ?>
-
+</div>
 <footer class="text-muted">
 <br>
 <br>
