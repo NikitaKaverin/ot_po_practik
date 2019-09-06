@@ -26,18 +26,12 @@ include("header.php");
     </div>
   </div>
 </header>
-<style>
-     body
-    {
-      background:url(image/oboi.png);
-    }
-</style>
 <br>
 <form action="" method="post">
     <div class="form-group col-md-2">
-        <label for="num"><h3>Сумма от:</h3></label>
+        <label for="min"><h3>Сумма от:</h3></label>
             <input type="number" min="500" max="10000" class="form-control" name="min" value="500" required><br>
-        <label for="num"><h3>Сумма до:</h3></label>
+        <label for="max"><h3>Сумма до:</h3></label>
             <input type="number" min="500" max="10000" class="form-control" name="max" value="10000" required><br>
             <input type="submit" class="btn btn-primary" value="Поиск" name="bron">   
      </div>   
@@ -60,8 +54,8 @@ include("header.php");
     FROM `car`where `id_kategor`=$primer");//var_dump($sql);die();
      while ($result = mysqli_fetch_array($sql))
      if(empty($_POST["bron"]))
-     {
-      {
+{
+    {
     $name=$result['name'];
     $tel=$result['telephone'];
     $photo=$result['photo'];
@@ -82,21 +76,22 @@ include("header.php");
     ;
       
     }
-}else
-{
-    if(isset($_POST["bron"]))
-    { 
+}
+    else
+    {
+        if(isset($_POST["bron"]))
+        { 
        $primer = $_SESSION['dat'];
        $min=$_POST['min'];
-       $max=$_POST['max'];
+       $max=$_POST['max'];//var_dump($max);die();
        $sql = mysqli_query($link, "SELECT `car`.`name`,`car`.`telephone`,`car`.`photo`,`car`.`arenda`
-       FROM `car` where `id_kategor`='$primer' and `arenda`>$min and `arenda`<$mas"); 
+       FROM `car` where `id_kategor`=$primer and `arenda`>$min and `arenda`<$max"); 
        while ($result = mysqli_fetch_array($sql))
         {
-      $name=$result['name'];
-      $tel=$result['telephone'];
-      $photo=$result['photo'];
-      $are=$result['arenda'];
+        $name=$result['name'];
+        $tel=$result['telephone'];
+        $photo=$result['photo'];
+        $are=$result['arenda'];
           echo '
           <div class="col-md-6">
           <div class="card mb-6 shadow-sm">
