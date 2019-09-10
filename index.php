@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(empty($_SESSION['id'])) $result_id = 0;
-else $result_id = $_SESSION['id'];
+if(empty($_SESSION['id']));
+else $_SESSION['id'] =0 ;
 include("header.php");
 ?>
 <?php
